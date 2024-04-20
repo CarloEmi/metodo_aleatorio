@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VonNeumannController;
+//se App\Http\Controllers\VonNeumannController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +19,7 @@ Route::get('/', function () {
 });
 
     
+Route::get('/prueba-von-neumann', 'VonNeumannController@pruebaVonNeumann');
 
-Route::get('/prueba-von-neumann', [VonNeumannController::class, 'pruebaVonNeumann']);
+//Route::get('prueba-von-neumann/{pares_iguales}/{primer_menor_segundo}/{segundo_menor_primer}', 'VonNeumannController@pruebaVonNeumann')->name('prueba');
+//Route::get('/prueba-von-neumann', [VonNeumannController::class, 'pruebaVonNeumann']);

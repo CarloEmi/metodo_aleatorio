@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\mainController;
+use App\Http\Controllers\congruenciaFundamentalController;
+use App\Http\Controllers\vonNeumannController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[mainController::class, 'index'])->name('main.index');
+
+/* 
+    Rutas de métodos pseudoaleatorios.
+*/
+// Rutas de Congruencia Fundamental
+Route::get('/congruencia-fundamental',[congruenciaFundamentalController::class, 'index'])->name('congruencia.index');
+
+// Rutas de Método Von Neumann
+Route::get('/von-neumann',[vonNeumannController::class, 'index'])->name('neumann.index');
+Route::post('/von-neumann',[vonNeumannController::class, 'VonNeumann'])->name('neumann.VonNeumann');

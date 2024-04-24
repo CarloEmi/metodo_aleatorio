@@ -21,7 +21,10 @@ Route::get('/',[mainController::class, 'index'])->name('main.index');
     Rutas de métodos pseudoaleatorios.
 */
 // Rutas de Congruencia Fundamental
-Route::get('/congruencia-fundamental',[congruenciaFundamentalController::class, 'index'])->name('congruencia.index');
+//Route::get('/congruencia-fundamental',[congruenciaFundamentalController::class, 'index'])->name('congruencia.index');
+Route::get('/congruencia-fundamental', [CongruenciaFundamentalController::class, 'index'])->name('congruencia.index');
+Route::post('/congruencia-fundamental', [CongruenciaFundamentalController::class, 'generarSecuencia'])->name('congruencia.generar');
+
 
 // Rutas de Método Von Neumann
 Route::get('/von-neumann',[vonNeumannController::class, 'index'])->name('neumann.index');

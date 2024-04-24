@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//se App\Http\Controllers\VonNeumannController;
+use App\Http\Controllers\mainController;
+use App\Http\Controllers\congruenciaFundamentalController;
+use App\Http\Controllers\vonNeumannController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',[mainController::class, 'index'])->name('main.index');
 
-});
+/* 
+    Rutas de métodos pseudoaleatorios.
+*/
+// Rutas de Congruencia Fundamental
+Route::get('/congruencia-fundamental',[congruenciaFundamentalController::class, 'index'])->name('congruencia.index');
 
-    
-Route::get('/prueba-von-neumann', 'VonNeumannController@pruebaVonNeumann');
-
-//Route::get('prueba-von-neumann/{pares_iguales}/{primer_menor_segundo}/{segundo_menor_primer}', 'VonNeumannController@pruebaVonNeumann')->name('prueba');
-//Route::get('/prueba-von-neumann', [VonNeumannController::class, 'pruebaVonNeumann']);
+// Rutas de Método Von Neumann
+Route::get('/von-neumann',[vonNeumannController::class, 'index'])->name('neumann.index');
+Route::post('/von-neumann',[vonNeumannController::class, 'VonNeumann'])->name('neumann.VonNeumann');

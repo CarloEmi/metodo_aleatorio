@@ -25,15 +25,12 @@
 
 <div class="row">
     <div class="col">
-        <table class="table table-hover">
-            <tbody>
-                @foreach ($resultados as $resultado)
-                    <tr>
-                        <td>{{ $resultado }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <p><code>[
+            @foreach ($resultados as $resultado)
+                {{ $resultado }}
+            @endforeach
+        ]</code>
+        </p>
     </div>
 </div>
 

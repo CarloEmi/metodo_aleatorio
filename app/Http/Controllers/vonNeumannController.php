@@ -39,7 +39,7 @@ class vonNeumannController extends Controller
             // Extraemos los cuatro valores centrales
             $sm1 = "";
             for($i = 2; $i<6; $i++){
-                if($array[$i] == 0 && $array[$i+1] == 0){
+                if($i == 4 && $array[$i] == 0 && $array[$i+1] == 0){
                     $sm1 = $sm1."1"."3";
                     array_push($resultado, "1", "3");
                     break;
@@ -52,7 +52,7 @@ class vonNeumannController extends Controller
             $contador = $contador + 1;
         }
 
-        // dd($resultado);
+        //dd($resultado);
         return view("neumann.tabla_resultados",[
             "resultados" => $resultado, 
             "semilla" => $request->semilla, 

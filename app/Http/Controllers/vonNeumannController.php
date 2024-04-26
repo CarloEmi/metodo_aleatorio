@@ -12,6 +12,11 @@ class vonNeumannController extends Controller
 
     public function VonNeumann(Request $request){
         
+        $request->validate([
+            'semilla'   => 'required|integer|min:4',
+            'cantidad'  => 'required|integer'
+        ]);
+
         $sm1 = $request->semilla;
         $cantidad = $request->cantidad;
         $contador = 1;

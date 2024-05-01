@@ -1,16 +1,19 @@
 @extends('layout.index')
 
 @section('contenido')
-    <!-- resources/views/congruencia/index.blade.php -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Congruencia Fundamental</title>
-</head>
-<body>
     <h2>Generar Secuencia - Congruencia Fundamental</h2>
-    <form method="POST" action="{{ route('congruencia.generar') }}">
+    <form method="POST" action="{{ route('congruencia.generar') }}" id="congruenciaForm">
         @csrf
+
+        <div id="semillasContainer">
+            <!-- Campo de entrada inicial para semillas -->
+            <div class="semillaInput">
+                <label for="semillas">Semillas:</label>
+                <input type="text" name="semillas[]" required>
+                <button type="button" class="btn btn-primary agregarSemilla">+</button>
+            </div>
+        </div>
+
         <label for="a">Valor de 'a':</label>
         <input type="number" name="a" required><br>
 
@@ -28,7 +31,25 @@
 
         <button type="submit">Generar Secuencia</button>
     </form>
-</body>
-</html>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Agregar campo de entrada de semilla al hacer clic en el botón '+'
+            document.querySelector('.agregarSemilla').addEventListener('click', function() {
+                const semillasContainer = document.getElementById('semillasContainer');
+                const nuevaSemillaInput = document.createElement('div');
+                nuevaSemillaInput.classList.add('semillaInput');
+                nuevaSemillaInput.innerHTML = `
+                    <label for="semillas">Semillas:</label>
+                    <input type="text" name="semillas[]" required>
+                    <button type="button" class="btn btn-primary agregarSemilla">+</button>
+                `;
+                semillasContainer.appendChild(nuevaSemillaInput);
+                // Agregar evento para eliminar el campo de entrada de semilla al hacer clic en el botón '-'
+                nuevaSemillaInput.querySelector('.agregarSemilla').addEventListener('click', function() {
+                    nuevaSemillaInput.remove();
+                });
+            });
+        });
+    </script>
 @endsection

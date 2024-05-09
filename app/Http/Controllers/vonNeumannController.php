@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\TestChiCuadrado;
+use App\Services\TestMonobits;
 
 class vonNeumannController extends Controller
 {
@@ -57,11 +59,17 @@ class vonNeumannController extends Controller
             $contador = $contador + 1;
         }
 
-        //dd($resultado);
+        $resultado_test = TestChiCuadrado::testearChiCuadrado($resultado);
+        $resultado_mono = TestMonobits::testearMonobits($resultado);
+
+        //dd($resultado_test->get('frecuencia_observada')->all()['key']);
         return view("neumann.tabla_resultados",[
-            "resultados" => $resultado, 
-            "semilla" => $request->semilla, 
-            "cantidad" => $cantidad]);
+            "resultados"    => $resultado, 
+            "semilla"       => $request->semilla, 
+            "cantidad"      => $cantidad,
+            'test'          => $resultado_test,
+            'test_mono'     => $resultado_mono
+            ]);
     }
 
 }
